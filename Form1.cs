@@ -13,19 +13,20 @@ namespace CircleAndLineCSharp
 {
     public partial class Form1 : Form
     {
-        int Scale; //масштаб в pictureBox1
+        int Scale = 1; //масштаб в pictureBox1
 
         public Form1()
         {
             InitializeComponent();
-            this.trackBar1.Scroll += new EventHandler(trackBar1_Scroll);
+            //this.trackBar1.Scroll += new EventHandler(trackBar1_Scroll);
             //pictureBox1.Paint += new PaintEventHandler(pictureBox1_Paint);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            trackBar1.Minimum = 0;
-            trackBar1.Maximum = 10;
+            //trackBar1.Minimum = 1;
+            //trackBar1.Maximum = 10;
+            //trackBar1.Value = 1;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -35,80 +36,107 @@ namespace CircleAndLineCSharp
             if (tbR.Text == String.Empty) { MessageBox.Show("Заполните поле:'Радиус окружности'"); return; }
             if (tbCx.Text == String.Empty) { MessageBox.Show("Заполните поле:'Координаты центра окружности X'"); return; }
             if (tbCy.Text == String.Empty) { MessageBox.Show("Заполните поле:'Координаты центра окружности Y'"); return; }
-            double Radius = double.Parse(tbR.Text);
-            double Xcenter = double.Parse(tbCx.Text);
-            double Ycenter = double.Parse(tbCy.Text);
-            double Xpoint, Ypoint;
-            string Xintersection, Yintersection;
-            if (Radius == 0) { MessageBox.Show("Радиус окружности не должен быть равен нулю."); return; }
-            richTextBox1.AppendText("Радиус окружности: " + Convert.ToString(Radius) + ";\n" + "Координаты центра окружности: X = " + Convert.ToString(Xcenter) + ", Y = " + Convert.ToString(Ycenter) + ";\n\n");
-            if (tbLx1.Text != String.Empty && tbLy1.Text != String.Empty) 
-            {
-                Xpoint = double.Parse(tbLx1.Text);
-                Ypoint = double.Parse(tbLy1.Text);
-                IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
-                PaintIntersectionPoint(Xintersection, Yintersection);
-            }
-            if (tbLx2.Text != String.Empty && tbLy2.Text != String.Empty) 
-            {
-                Xpoint = double.Parse(tbLx2.Text);
-                Ypoint = double.Parse(tbLy2.Text);
-                IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
-                PaintIntersectionPoint(Xintersection, Yintersection);
-            }
-            if (tbLx3.Text != String.Empty && tbLy3.Text != String.Empty) 
-            {
-                Xpoint = double.Parse(tbLx3.Text);
-                Ypoint = double.Parse(tbLy3.Text);
-                IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
-                PaintIntersectionPoint(Xintersection, Yintersection);
-            }
-            if (tbLx4.Text != String.Empty && tbLy4.Text != String.Empty) 
-            {
-                Xpoint = double.Parse(tbLx4.Text);
-                Ypoint = double.Parse(tbLy4.Text);
-                IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
-                PaintIntersectionPoint(Xintersection, Yintersection);
-            }
-            if (tbLx5.Text != String.Empty && tbLy5.Text != String.Empty) 
-            {
-                Xpoint = double.Parse(tbLx5.Text);
-                Ypoint = double.Parse(tbLy5.Text);
-                IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
-                PaintIntersectionPoint(Xintersection, Yintersection);
-            }
-
         }
 
-        private void PaintIntersectionPoint(string Xintersection, string Yintersection)
-        {
-
-            //На pictureBox1 с каждым вызовом метода рисуется одна точка пересечения прямой методом с окружностью методом .DrawEllipse и прямая к ней методом .DrawLine из точки (0,0)
-        }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
-            
             if (tbR.Text != String.Empty && tbCx.Text != String.Empty && tbCy.Text != String.Empty) 
             {
-                float RadiusF = float.Parse(tbR.Text);
-                float XcenterF = float.Parse(tbCx.Text);
-                float YcenterF = float.Parse(tbCy.Text);
-                float HalfRadius = (float)(RadiusF / 2);
+                //Переменные для вычислений.
+                double Radius = double.Parse(tbR.Text);
+                double Xcenter = double.Parse(tbCx.Text);
+                double Ycenter = double.Parse(tbCy.Text);
+                double Xpoint, Ypoint;
+                string Xintersection, Yintersection;
+
+                //Переменные для рисования.
+                float RadiusF = (float)(float.Parse(tbR.Text) * float.Parse(Convert.ToString(Scale)));
+                float DiameterF = (float)( 2F * float.Parse(tbR.Text) * float.Parse(Convert.ToString(Scale)));
+                float XcenterF = (float)(float.Parse(tbCx.Text) * float.Parse(Convert.ToString(Scale)));
+                float YcenterF = (float)(float.Parse(tbCy.Text) * float.Parse(Convert.ToString(Scale)));
+                float HalfRadius = (float)(RadiusF / 2 * float.Parse(Convert.ToString(Scale)));
                 var G = e.Graphics;
                 G.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 G.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 G.TranslateTransform((float)(pictureBox1.Width / 2), (float)(pictureBox1.Height / 2)); //Перенос начала координат в центр элемента формы pictureBox1.
                 Pen Pen = new Pen(Color.Black, 2);
                 Pen PenAxis = new Pen(Color.Blue, 1);
+                Pen PenLine = new Pen(Color.Red, 1);
                 SolidBrush BrushEllipse = new SolidBrush(Color.Red);
+
+                //На pictureBox1 строются окружность, оси координат и точка с координатами (0,0).
                 G.DrawLine(PenAxis, (float)(-pictureBox1.Width), 0F, (float)(pictureBox1.Width), 0F); //Ось абсцисс.
                 G.DrawLine(PenAxis, 0F, (float)(-pictureBox1.Height), 0F, (float)(pictureBox1.Height)); //Ось ординат.
-                RectangleF Rect = new RectangleF((float)(XcenterF - HalfRadius), (float)(-YcenterF - HalfRadius), RadiusF, RadiusF);
-                RectangleF Point = new RectangleF(-3F, -3F, 6F, 6F);
+                RectangleF Rect = new RectangleF((float)(XcenterF - RadiusF), (float)(-YcenterF - RadiusF), DiameterF, DiameterF);
                 G.DrawEllipse(Pen, Rect); //Рисуем окружность.
+                RectangleF Point = new RectangleF(-3F, -3F, 6F, 6F);
                 G.FillEllipse(BrushEllipse, Point); //Рисуем точку в начале координат из которой пойдут отрезки.
-                //На pictureBox1 с каждым вызовом метода рисуется окружность методом .DrawEllipse, точка с координатами (0,0) методом .DrawEllipse
+
+                //На pictureBox1 строются точки пересечения окружности и отрезков из точки с координатами (0,0).
+                if (Radius == 0) { MessageBox.Show("Радиус окружности не должен быть равен нулю."); return; }
+                richTextBox1.AppendText("Радиус окружности: " + Convert.ToString(Radius) + ";\n" + "Координаты центра окружности: X = " + Convert.ToString(Xcenter) + ", Y = " + Convert.ToString(Ycenter) + ";\n\n");
+                if (tbLx1.Text != String.Empty && tbLy1.Text != String.Empty)
+                {
+                    Xpoint = double.Parse(tbLx1.Text);
+                    Ypoint = double.Parse(tbLy1.Text);
+                    IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
+                    if (Xintersection != "NotExist" && Yintersection != "NotExist")
+                    {
+                        RectangleF Point1 = new RectangleF((float)(float.Parse(Xintersection) - 3F), (float)(-float.Parse(Yintersection) - 3F), 6F, 6F);
+                        G.FillEllipse(BrushEllipse, Point1); //Ближайшая точка пересечения прямой с окружностью.
+                        G.DrawLine(PenLine, 0F, 0F, float.Parse(Xintersection), -float.Parse(Yintersection)); //Отрезок из начала координат до точки пересечения с окружностью.
+                    }
+                }
+                if (tbLx2.Text != String.Empty && tbLy2.Text != String.Empty)
+                {
+                    Xpoint = double.Parse(tbLx2.Text);
+                    Ypoint = double.Parse(tbLy2.Text);
+                    IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
+                    if (Xintersection != "NotExist" && Yintersection != "NotExist") 
+                    {
+                        RectangleF Point2 = new RectangleF((float)(float.Parse(Xintersection) - 3F), (float)(-float.Parse(Yintersection) - 3F), 6F, 6F);
+                        G.FillEllipse(BrushEllipse, Point2); //Ближайшая точка пересечения прямой с окружностью.
+                        G.DrawLine(PenLine, 0F, 0F, float.Parse(Xintersection), -float.Parse(Yintersection)); //Отрезок из начала координат до точки пересечения с окружностью.
+                    }
+                }
+                if (tbLx3.Text != String.Empty && tbLy3.Text != String.Empty)
+                {
+                    Xpoint = double.Parse(tbLx3.Text);
+                    Ypoint = double.Parse(tbLy3.Text);
+                    IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
+                    if (Xintersection != "NotExist" && Yintersection != "NotExist") 
+                    {
+                        RectangleF Point3 = new RectangleF((float)(float.Parse(Xintersection) - 3F), (float)(-float.Parse(Yintersection) - 3F), 6F, 6F);
+                        G.FillEllipse(BrushEllipse, Point3); //Ближайшая точка пересечения прямой с окружностью.
+                        G.DrawLine(PenLine, 0F, 0F, float.Parse(Xintersection), -float.Parse(Yintersection)); //Отрезок из начала координат до точки пересечения с окружностью.
+                    }
+                }
+                if (tbLx4.Text != String.Empty && tbLy4.Text != String.Empty)
+                {
+                    Xpoint = double.Parse(tbLx4.Text);
+                    Ypoint = double.Parse(tbLy4.Text);
+                    IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
+                    if (Xintersection != "NotExist" && Yintersection != "NotExist")
+                    {
+                        RectangleF Point4 = new RectangleF((float)(float.Parse(Xintersection) - 3F), (float)(-float.Parse(Yintersection) - 3F), 6F, 6F);
+                        G.FillEllipse(BrushEllipse, Point4); //Ближайшая точка пересечения прямой с окружностью.
+                        G.DrawLine(PenLine, 0F, 0F, float.Parse(Xintersection), -float.Parse(Yintersection)); //Отрезок из начала координат до точки пересечения с окружностью.
+                    }
+                }
+                if (tbLx5.Text != String.Empty && tbLy5.Text != String.Empty)
+                {
+                    Xpoint = double.Parse(tbLx5.Text);
+                    Ypoint = double.Parse(tbLy5.Text);
+                    IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
+                    if (Xintersection != "NotExist" && Yintersection != "NotExist") 
+                    {
+                        RectangleF Point5 = new RectangleF((float)(float.Parse(Xintersection) - 3F), (float)(-float.Parse(Yintersection) - 3F), 6F, 6F);
+                        G.FillEllipse(BrushEllipse, Point5); //Ближайшая точка пересечения прямой с окружностью.
+                        G.DrawLine(PenLine, 0F, 0F, float.Parse(Xintersection), -float.Parse(Yintersection)); //Отрезок из начала координат до точки пересечения с окружностью.
+                    }
+                }
+                
             }
 
         }
@@ -288,12 +316,11 @@ namespace CircleAndLineCSharp
             }
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            toolTip1.SetToolTip(trackBar1, trackBar1.Value.ToString());
-            Scale = trackBar1.Value;
-        }
+        //private void trackBar1_Scroll(object sender, EventArgs e)
+        //{
+        //    toolTip1.SetToolTip(trackBar1, trackBar1.Value.ToString());
+        //    Scale = trackBar1.Value;
+        //}
 
-        
     }
 }
