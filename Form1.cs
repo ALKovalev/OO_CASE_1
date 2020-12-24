@@ -13,20 +13,21 @@ namespace CircleAndLineCSharp
 {
     public partial class Form1 : Form
     {
-        int Scale = 1; //масштаб в pictureBox1
+        int scale = 1; //масштаб в pictureBox1
+        double Alpha; // Величина сектора в радианах
 
         public Form1()
         {
             InitializeComponent();
-            //this.trackBar1.Scroll += new EventHandler(trackBar1_Scroll);
+            this.trackBarAngle.Scroll += new EventHandler(trackBarAngle_Scroll);
             //pictureBox1.Paint += new PaintEventHandler(pictureBox1_Paint);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //trackBar1.Minimum = 1;
-            //trackBar1.Maximum = 10;
-            //trackBar1.Value = 1;
+            trackBarAngle.Minimum = 0;
+            trackBarAngle.Maximum = 90;
+            trackBarAngle.Value = 0;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -51,11 +52,11 @@ namespace CircleAndLineCSharp
                 string Xintersection, Yintersection;
 
                 //Переменные для рисования.
-                float RadiusF = (float)(float.Parse(tbR.Text) * float.Parse(Convert.ToString(Scale)));
-                float DiameterF = (float)( 2F * float.Parse(tbR.Text) * float.Parse(Convert.ToString(Scale)));
-                float XcenterF = (float)(float.Parse(tbCx.Text) * float.Parse(Convert.ToString(Scale)));
-                float YcenterF = (float)(float.Parse(tbCy.Text) * float.Parse(Convert.ToString(Scale)));
-                float HalfRadius = (float)(RadiusF / 2 * float.Parse(Convert.ToString(Scale)));
+                float RadiusF = (float)(float.Parse(tbR.Text) * float.Parse(Convert.ToString(scale)));
+                float DiameterF = (float)( 2F * float.Parse(tbR.Text) * float.Parse(Convert.ToString(scale)));
+                float XcenterF = (float)(float.Parse(tbCx.Text) * float.Parse(Convert.ToString(scale)));
+                float YcenterF = (float)(float.Parse(tbCy.Text) * float.Parse(Convert.ToString(scale)));
+                float HalfRadius = (float)(RadiusF / 2 * float.Parse(Convert.ToString(scale)));
                 var G = e.Graphics;
                 G.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
                 G.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
@@ -136,7 +137,32 @@ namespace CircleAndLineCSharp
                         G.DrawLine(PenLine, 0F, 0F, float.Parse(Xintersection), -float.Parse(Yintersection)); //Отрезок из начала координат до точки пересечения с окружностью.
                     }
                 }
-                
+                if (tbLx6.Text != String.Empty && tbLy6.Text != String.Empty && Alpha != 0)
+                {
+                    RectangleF PointT;
+                    double Xvector = double.Parse(tbLx6.Text);
+                    double Yvector = double.Parse(tbLy6.Text);
+                    double Dx = -Xvector; //Координата X вектора начало и конец которого заданы точками AO.
+                    double Dy = -Yvector; //Координата Y вектора начало и конец которого заданы точками AO.
+                    double k1 = Dx * Dx + Dy * Dy; //k1, k2, k3 это слагаемые в квадратном уравнении,
+                    double Phi = Math.Acos(Xvector / Math.Sqrt(k1)) * 180.0 / Math.PI; // Угол через который выражаются координаты заданной точки в полярных координатах
+                    if (Yvector < 0) Phi = 360.0 - Phi;
+                    double T = Alpha / 10;
+                    for (double i = Alpha / 2; i >= -Alpha / 2; i -= T)
+                    {
+                        Xpoint = Math.Cos((Phi + i) * Math.PI / 180.0);
+                        Ypoint = Math.Sin((Phi + i) * Math.PI / 180.0);
+                        IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
+                        if (Xintersection != "NotExist" && Yintersection != "NotExist")
+                        {
+                            PointT = new RectangleF((float)(float.Parse(Xintersection) - 3F), (float)(-float.Parse(Yintersection) - 3F), 6F, 6F);
+                            G.FillEllipse(BrushEllipse, PointT); //Ближайшая точка пересечения прямой с окружностью.
+                            G.DrawLine(PenLine, 0F, 0F, float.Parse(Xintersection), -float.Parse(Yintersection)); //Отрезок из начала координат до точки пересечения с окружностью.
+                        }
+                    }
+                }
+
+
             }
 
         }
@@ -316,11 +342,29 @@ namespace CircleAndLineCSharp
             }
         }
 
-        //private void trackBar1_Scroll(object sender, EventArgs e)
-        //{
-        //    toolTip1.SetToolTip(trackBar1, trackBar1.Value.ToString());
-        //    Scale = trackBar1.Value;
-        //}
+        private void tbLx6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8 && number != 44 && number != 45) //Цифры, клавиша BackSpace, запятая и минус.
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbLy6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char number = e.KeyChar;
+            if ((e.KeyChar <= 47 || e.KeyChar >= 58) && number != 8 && number != 44 && number != 45) //Цифры, клавиша BackSpace, запятая и минус.
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void trackBarAngle_Scroll(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(trackBarAngle, trackBarAngle.Value.ToString());
+            Alpha = trackBarAngle.Value;
+        }
 
     }
 }

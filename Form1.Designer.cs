@@ -51,7 +51,13 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.tbLx6 = new System.Windows.Forms.TextBox();
+            this.tbLy6 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.trackBarAngle = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarAngle)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -207,7 +213,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(268, 206);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(364, 159);
+            this.richTextBox1.Size = new System.Drawing.Size(364, 221);
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             // 
@@ -222,7 +228,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(153, 355);
+            this.button1.Location = new System.Drawing.Point(153, 455);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 20;
@@ -230,11 +236,57 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // tbLx6
+            // 
+            this.tbLx6.Location = new System.Drawing.Point(14, 370);
+            this.tbLx6.Name = "tbLx6";
+            this.tbLx6.Size = new System.Drawing.Size(100, 20);
+            this.tbLx6.TabIndex = 22;
+            this.tbLx6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLx6_KeyPress);
+            // 
+            // tbLy6
+            // 
+            this.tbLy6.Location = new System.Drawing.Point(128, 370);
+            this.tbLy6.Name = "tbLy6";
+            this.tbLy6.Size = new System.Drawing.Size(100, 20);
+            this.tbLy6.TabIndex = 23;
+            this.tbLy6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLy6_KeyPress);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(61, 341);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 13);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "Пересечения в секторе";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(19, 407);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 13);
+            this.label8.TabIndex = 27;
+            this.label8.Text = "Размер сектора:";
+            // 
+            // trackBarAngle
+            // 
+            this.trackBarAngle.Location = new System.Drawing.Point(129, 407);
+            this.trackBarAngle.Name = "trackBarAngle";
+            this.trackBarAngle.Size = new System.Drawing.Size(104, 45);
+            this.trackBarAngle.TabIndex = 28;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 404);
+            this.ClientSize = new System.Drawing.Size(642, 490);
+            this.Controls.Add(this.trackBarAngle);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.tbLy6);
+            this.Controls.Add(this.tbLx6);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.richTextBox1);
@@ -256,12 +308,14 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.Text = "Программа";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBarAngle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -291,6 +345,11 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.TextBox tbLx6;
+        private System.Windows.Forms.TextBox tbLy6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TrackBar trackBarAngle;
     }
 }
 
