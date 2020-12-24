@@ -365,5 +365,6 @@ namespace CircleAndLineCSharp
             Alpha = trackBarAngle.Value;
         }
 
+        
     }
 }

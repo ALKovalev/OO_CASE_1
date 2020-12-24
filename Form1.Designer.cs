@@ -53,9 +53,9 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tbLx6 = new System.Windows.Forms.TextBox();
             this.tbLy6 = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.trackBarAngle = new System.Windows.Forms.TrackBar();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarAngle)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 17);
+            this.label1.Location = new System.Drawing.Point(18, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 13);
             this.label1.TabIndex = 0;
@@ -72,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 71);
+            this.label2.Location = new System.Drawing.Point(49, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(170, 13);
             this.label2.TabIndex = 1;
@@ -81,16 +81,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(61, 133);
+            this.label3.Location = new System.Drawing.Point(80, 134);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(119, 13);
+            this.label3.Size = new System.Drawing.Size(100, 13);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Координаты отрезков";
+            this.label3.Text = "Координаты точек";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(61, 49);
+            this.label4.Location = new System.Drawing.Point(69, 49);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(14, 13);
             this.label4.TabIndex = 3;
@@ -99,7 +99,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(174, 49);
+            this.label5.Location = new System.Drawing.Point(182, 49);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(14, 13);
             this.label5.TabIndex = 4;
@@ -107,7 +107,7 @@
             // 
             // tbR
             // 
-            this.tbR.Location = new System.Drawing.Point(128, 17);
+            this.tbR.Location = new System.Drawing.Point(136, 17);
             this.tbR.Name = "tbR";
             this.tbR.Size = new System.Drawing.Size(100, 20);
             this.tbR.TabIndex = 5;
@@ -115,7 +115,7 @@
             // 
             // tbCx
             // 
-            this.tbCx.Location = new System.Drawing.Point(14, 98);
+            this.tbCx.Location = new System.Drawing.Point(22, 98);
             this.tbCx.Name = "tbCx";
             this.tbCx.Size = new System.Drawing.Size(100, 20);
             this.tbCx.TabIndex = 6;
@@ -123,7 +123,7 @@
             // 
             // tbCy
             // 
-            this.tbCy.Location = new System.Drawing.Point(129, 98);
+            this.tbCy.Location = new System.Drawing.Point(137, 98);
             this.tbCy.Name = "tbCy";
             this.tbCy.Size = new System.Drawing.Size(100, 20);
             this.tbCy.TabIndex = 7;
@@ -131,7 +131,7 @@
             // 
             // tbLx1
             // 
-            this.tbLx1.Location = new System.Drawing.Point(14, 165);
+            this.tbLx1.Location = new System.Drawing.Point(22, 165);
             this.tbLx1.Name = "tbLx1";
             this.tbLx1.Size = new System.Drawing.Size(100, 20);
             this.tbLx1.TabIndex = 8;
@@ -139,7 +139,7 @@
             // 
             // tbLy1
             // 
-            this.tbLy1.Location = new System.Drawing.Point(129, 165);
+            this.tbLy1.Location = new System.Drawing.Point(137, 165);
             this.tbLy1.Name = "tbLy1";
             this.tbLy1.Size = new System.Drawing.Size(100, 20);
             this.tbLy1.TabIndex = 9;
@@ -147,7 +147,7 @@
             // 
             // tbLx2
             // 
-            this.tbLx2.Location = new System.Drawing.Point(14, 197);
+            this.tbLx2.Location = new System.Drawing.Point(22, 197);
             this.tbLx2.Name = "tbLx2";
             this.tbLx2.Size = new System.Drawing.Size(100, 20);
             this.tbLx2.TabIndex = 10;
@@ -155,7 +155,7 @@
             // 
             // tbLy2
             // 
-            this.tbLy2.Location = new System.Drawing.Point(128, 197);
+            this.tbLy2.Location = new System.Drawing.Point(137, 197);
             this.tbLy2.Name = "tbLy2";
             this.tbLy2.Size = new System.Drawing.Size(100, 20);
             this.tbLy2.TabIndex = 11;
@@ -163,7 +163,7 @@
             // 
             // tbLx3
             // 
-            this.tbLx3.Location = new System.Drawing.Point(14, 232);
+            this.tbLx3.Location = new System.Drawing.Point(22, 232);
             this.tbLx3.Name = "tbLx3";
             this.tbLx3.Size = new System.Drawing.Size(100, 20);
             this.tbLx3.TabIndex = 12;
@@ -171,7 +171,7 @@
             // 
             // tbLy3
             // 
-            this.tbLy3.Location = new System.Drawing.Point(128, 233);
+            this.tbLy3.Location = new System.Drawing.Point(137, 232);
             this.tbLy3.Name = "tbLy3";
             this.tbLy3.Size = new System.Drawing.Size(100, 20);
             this.tbLy3.TabIndex = 13;
@@ -179,7 +179,7 @@
             // 
             // tbLx4
             // 
-            this.tbLx4.Location = new System.Drawing.Point(14, 268);
+            this.tbLx4.Location = new System.Drawing.Point(22, 268);
             this.tbLx4.Name = "tbLx4";
             this.tbLx4.Size = new System.Drawing.Size(100, 20);
             this.tbLx4.TabIndex = 14;
@@ -187,7 +187,7 @@
             // 
             // tbLy4
             // 
-            this.tbLy4.Location = new System.Drawing.Point(128, 268);
+            this.tbLy4.Location = new System.Drawing.Point(137, 268);
             this.tbLy4.Name = "tbLy4";
             this.tbLy4.Size = new System.Drawing.Size(100, 20);
             this.tbLy4.TabIndex = 15;
@@ -195,7 +195,7 @@
             // 
             // tbLx5
             // 
-            this.tbLx5.Location = new System.Drawing.Point(14, 304);
+            this.tbLx5.Location = new System.Drawing.Point(22, 304);
             this.tbLx5.Name = "tbLx5";
             this.tbLx5.Size = new System.Drawing.Size(100, 20);
             this.tbLx5.TabIndex = 16;
@@ -203,7 +203,7 @@
             // 
             // tbLy5
             // 
-            this.tbLy5.Location = new System.Drawing.Point(128, 304);
+            this.tbLy5.Location = new System.Drawing.Point(137, 304);
             this.tbLy5.Name = "tbLy5";
             this.tbLy5.Size = new System.Drawing.Size(100, 20);
             this.tbLy5.TabIndex = 17;
@@ -211,15 +211,15 @@
             // 
             // richTextBox1
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(268, 206);
+            this.richTextBox1.Location = new System.Drawing.Point(276, 206);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(364, 221);
+            this.richTextBox1.Size = new System.Drawing.Size(364, 279);
             this.richTextBox1.TabIndex = 18;
             this.richTextBox1.Text = "";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(268, 17);
+            this.pictureBox1.Location = new System.Drawing.Point(276, 17);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(364, 168);
             this.pictureBox1.TabIndex = 19;
@@ -228,7 +228,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(153, 455);
+            this.button1.Location = new System.Drawing.Point(162, 462);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 20;
@@ -238,7 +238,7 @@
             // 
             // tbLx6
             // 
-            this.tbLx6.Location = new System.Drawing.Point(14, 370);
+            this.tbLx6.Location = new System.Drawing.Point(22, 374);
             this.tbLx6.Name = "tbLx6";
             this.tbLx6.Size = new System.Drawing.Size(100, 20);
             this.tbLx6.TabIndex = 22;
@@ -246,25 +246,16 @@
             // 
             // tbLy6
             // 
-            this.tbLy6.Location = new System.Drawing.Point(128, 370);
+            this.tbLy6.Location = new System.Drawing.Point(137, 374);
             this.tbLy6.Name = "tbLy6";
             this.tbLy6.Size = new System.Drawing.Size(100, 20);
             this.tbLy6.TabIndex = 23;
             this.tbLy6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbLy6_KeyPress);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(61, 341);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(127, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Пересечения в секторе";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(19, 407);
+            this.label8.Location = new System.Drawing.Point(23, 416);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(93, 13);
             this.label8.TabIndex = 27;
@@ -272,19 +263,28 @@
             // 
             // trackBarAngle
             // 
-            this.trackBarAngle.Location = new System.Drawing.Point(129, 407);
+            this.trackBarAngle.Location = new System.Drawing.Point(133, 416);
             this.trackBarAngle.Name = "trackBarAngle";
             this.trackBarAngle.Size = new System.Drawing.Size(104, 45);
             this.trackBarAngle.TabIndex = 28;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(39, 343);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(180, 13);
+            this.label6.TabIndex = 29;
+            this.label6.Text = "Координаты направляющей точки";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 490);
+            this.ClientSize = new System.Drawing.Size(661, 497);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.trackBarAngle);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.tbLy6);
             this.Controls.Add(this.tbLx6);
             this.Controls.Add(this.button1);
@@ -347,9 +347,9 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TextBox tbLx6;
         private System.Windows.Forms.TextBox tbLy6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TrackBar trackBarAngle;
+        private System.Windows.Forms.Label label6;
     }
 }
 
