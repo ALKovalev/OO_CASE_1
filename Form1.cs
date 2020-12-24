@@ -14,13 +14,12 @@ namespace CircleAndLineCSharp
     public partial class Form1 : Form
     {
         int scale = 1; //масштаб в pictureBox1
-        double Alpha; // Величина сектора в радианах
+        double Alpha; // Величина сектора в градусах
 
         public Form1()
         {
             InitializeComponent();
             this.trackBarAngle.Scroll += new EventHandler(trackBarAngle_Scroll);
-            //pictureBox1.Paint += new PaintEventHandler(pictureBox1_Paint);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -144,10 +143,10 @@ namespace CircleAndLineCSharp
                     double Yvector = double.Parse(tbLy6.Text);
                     double Dx = -Xvector; //Координата X вектора начало и конец которого заданы точками AO.
                     double Dy = -Yvector; //Координата Y вектора начало и конец которого заданы точками AO.
-                    double k1 = Dx * Dx + Dy * Dy; //k1, k2, k3 это слагаемые в квадратном уравнении,
-                    double Phi = Math.Acos(Xvector / Math.Sqrt(k1)) * 180.0 / Math.PI; // Угол через который выражаются координаты заданной точки в полярных координатах
+                    double k1 = Dx * Dx + Dy * Dy; // Квадрат радиуса в полярных координатах для заданной точки
+                    double Phi = Math.Acos(Xvector / Math.Sqrt(k1)) * 180.0 / Math.PI; // Угол (в градусах) через который выражаются координаты заданной точки в полярных координатах
                     if (Yvector < 0) Phi = 360.0 - Phi;
-                    double T = Alpha / 10;
+                    double T = Alpha / 10; // Интервал отрезков в секторе
                     for (double i = Alpha / 2; i >= -Alpha / 2; i -= T)
                     {
                         Xpoint = Math.Cos((Phi + i) * Math.PI / 180.0);
