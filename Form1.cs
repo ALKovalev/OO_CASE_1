@@ -160,6 +160,18 @@ namespace CircleAndLineCSharp
                         }
                     }
                 }
+                else if (tbLx6.Text != String.Empty && tbLy6.Text != String.Empty)
+                {
+                    Xpoint = double.Parse(tbLx6.Text);
+                    Ypoint = double.Parse(tbLy6.Text);
+                    IntersectRayCircle(0.0, 0.0, Xpoint, Ypoint, Xcenter, Ycenter, Radius, out Xintersection, out Yintersection);
+                    if (Xintersection != "NotExist" && Yintersection != "NotExist")
+                    {
+                        RectangleF Point6 = new RectangleF((float)(float.Parse(Xintersection) - 3F), (float)(-float.Parse(Yintersection) - 3F), 6F, 6F);
+                        G.FillEllipse(BrushEllipse, Point6); //Ближайшая точка пересечения прямой с окружностью.
+                        G.DrawLine(PenLine, 0F, 0F, float.Parse(Xintersection), -float.Parse(Yintersection)); //Отрезок из начала координат до точки пересечения с окружностью.
+                    }
+                }
 
 
             }
